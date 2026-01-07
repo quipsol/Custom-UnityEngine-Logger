@@ -50,8 +50,6 @@ namespace QS.Core
 
 		public void LogException(Exception message, [CallerFilePath] string callerFilePath = "", [CallerMemberName] string callerMemberName = "");
 
-		// has Dictionary as a reference, to give user option for custom parameters. Maybe. If I feel like it.
-		//public void LogCustom();
 
 	}
 }

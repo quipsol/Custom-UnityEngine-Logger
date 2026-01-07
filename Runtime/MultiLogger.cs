@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 namespace QS.Core
 {
-	public class MultiLogger<TLogTopics, TLogLevels> : IServiceLogger<TLogTopics, TLogLevels> where TLogTopics : Enum where TLogLevels : Enum
+	public class MultiLogger<TLogTopics, TLogLevels> : IDisposable, IServiceLogger<TLogTopics, TLogLevels> where TLogTopics : Enum where TLogLevels : Enum
 	{
 
 		private readonly List<IServiceLogger<TLogTopics, TLogLevels>> _loggers = new();
@@ -240,6 +240,24 @@ namespace QS.Core
 		}
 
 		#endregion IServiceLogger
+
+		#region IDisposable
+
+		private bool _disposed;
+		public void Dispose()
+		{
+			if (_disposed) return;
+			_disposed = true;
+			foreach (var logger in _loggers)
+			{
+				if(logger is IDisposable disposable)
+				{
+					disposable.Dispose();
+				}
+			}
+		}
+
+		#endregion IDisposable
 
 	}
 }
