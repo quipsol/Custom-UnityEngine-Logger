@@ -1,4 +1,4 @@
-using QS.Core.Setup;
+using QS.Core.Config;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -38,7 +38,7 @@ namespace QS.Core.Logger
 		private readonly Func<FileLogMessageContext<TLogTopics, TLogLevels>, string> messageFormatter;
 
 
-		public FileLogger(FileLoggerSetup<TLogTopics, TLogLevels> fls) : base(fls.DefaultTopic, fls.DefaultLevel, fls.DisplayTopics, fls.LogDepth)
+		public FileLogger(FileLoggerConfig<TLogTopics, TLogLevels> fls) : base(fls.DefaultTopic, fls.DefaultLevel, fls.DisplayTopics, fls.LogDepth)
 		{
 			this.folderPath = fls.FolderPath;
 			this.fileName = fls.FileName;

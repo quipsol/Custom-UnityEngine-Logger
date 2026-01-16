@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using UnityEngine;
 
-using QS.ExampleLogger.Setup;
+using QS.ExampleLogger.Config;
 using QS.Core.Logger;
 
 
@@ -17,20 +17,20 @@ namespace QS.ExampleLogger
 
 		public IServiceLogger CreateServiceLogger()
 		{
-			UnityLoggerSetup unityLoggerSetup = new UnityLoggerSetup.Factory(defaultTopic, defaultLevel, displayTopics, loggingDepth)
+			UnityLoggerConfig unityLoggerConfig = new UnityLoggerConfig.Factory(defaultTopic, defaultLevel, displayTopics, loggingDepth)
 										.SetCustomMessageFormatter(MyCustomFormatterUnity)
 										.SetUseDefaultMessageColor(false)
 										.SetCallStackColor(Color.yellow)
 										.Create();
-			UnityLogger unityLogger = new UnityLogger(unityLoggerSetup);
+			UnityLogger unityLogger = new UnityLogger(unityLoggerConfig);
 
-			FileLoggerSetup fileLoggerSetup = new FileLoggerSetup.Factory(defaultTopic, defaultLevel, displayTopics, loggingDepth, "C:/folder", "filename.txt")
+			FileLoggerConfig fileLoggerConfig = new FileLoggerConfig.Factory(defaultTopic, defaultLevel, displayTopics, loggingDepth, "C:/folder", "filename.txt")
 										.SetCustomMessageFormatter(MyCustomFormatterFile)
 										.SetMaxBatchInterval(TimeSpan.FromSeconds(15))
 										.SetMaxBatchSize(20)
 										.SetRemoveRichTextBrackets(true)
 										.Create();
-			FileLogger fileLogger = new FileLogger(fileLoggerSetup);
+			FileLogger fileLogger = new FileLogger(fileLoggerConfig);
 
 			MultiLogger multiLogger = new MultiLogger();
 			multiLogger.AddLogger(unityLogger);

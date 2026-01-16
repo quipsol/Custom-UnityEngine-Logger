@@ -1,5 +1,5 @@
 using QS.Core.Logger;
-using QS.Core.Setup;
+using QS.Core.Config;
 using System;
 using UnityEngine;
 
@@ -7,7 +7,7 @@ namespace QS.ExampleLogger
 {
 	public class UnityLogger : UnityLogger<LogTopic, LogLevel>, IServiceLogger
 	{
-		public UnityLogger(UnityLoggerSetup<LogTopic, LogLevel> uls) : base(uls)
+		public UnityLogger(UnityLoggerConfig<LogTopic, LogLevel> uls) : base(uls)
 		{ }
 	}
 }

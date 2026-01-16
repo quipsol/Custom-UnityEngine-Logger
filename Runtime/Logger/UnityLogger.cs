@@ -1,5 +1,5 @@
 using QS.Core;
-using QS.Core.Setup;
+using QS.Core.Config;
 using System;
 using System.IO;
 using System.Runtime.CompilerServices;
@@ -33,7 +33,7 @@ namespace QS.Core.Logger
 
 
 
-		public UnityLogger(UnityLoggerSetup<TLogTopics, TLogLevels> uls) : base(uls.DefaultTopic, uls.DefaultLevel, uls.DisplayTopics, uls.LogDepth)
+		public UnityLogger(UnityLoggerConfig<TLogTopics, TLogLevels> uls) : base(uls.DefaultTopic, uls.DefaultLevel, uls.DisplayTopics, uls.LogDepth)
 		{
 			this.messageFormatter = uls.CustomMessageFormatter ?? BaseMessageFormatter;
 			this.useDefaultMessageColor = uls.UseDefaultMessageColor;

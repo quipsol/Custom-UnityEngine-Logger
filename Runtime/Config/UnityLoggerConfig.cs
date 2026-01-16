@@ -3,10 +3,9 @@ using System;
 using UnityEngine;
 
 
-namespace QS.Core.Setup
+namespace QS.Core.Config
 {
-	// TODO: These are configs, config is a way better name than setup lmao
-	public class UnityLoggerSetup<TLogTopics, TLogLevels> where TLogTopics : Enum where TLogLevels : Enum
+	public class UnityLoggerConfig<TLogTopics, TLogLevels> where TLogTopics : Enum where TLogLevels : Enum
 	{
 		public TLogTopics DefaultTopic { get; internal set; }
 		public TLogLevels DefaultLevel { get; internal set; }
@@ -18,9 +17,9 @@ namespace QS.Core.Setup
 		public Color? CallStackColor { get; internal set; }
 		public Func<UnityLogMessageContext<TLogTopics, TLogLevels>, string> CustomMessageFormatter { get; internal set; }
 
-		internal UnityLoggerSetup() { }
+		public UnityLoggerConfig() { }
 
-		public class Factory<TFactory, TSetup> where TFactory : Factory<TFactory, TSetup> where TSetup : UnityLoggerSetup<TLogTopics, TLogLevels>, new()
+		public class Factory<TFactory, TSetup> where TFactory : Factory<TFactory, TSetup> where TSetup : UnityLoggerConfig<TLogTopics, TLogLevels>, new()
 		{
 
 			private TLogTopics _defaultTopic;

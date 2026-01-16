@@ -1,14 +1,14 @@
-using QS.Core.Setup;
+using QS.Core.Config;
 using System;
 
-namespace QS.ExampleLogger.Setup
+namespace QS.ExampleLogger.Config
 {
-	public class FileLoggerSetup : FileLoggerSetup<LogTopic, LogLevel>
+	public class FileLoggerConfig : FileLoggerConfig<LogTopic, LogLevel>
 	{
 		[Obsolete("Use FileLoggerSetup.Factory instead")]
-		public FileLoggerSetup() : base() { } // public for Factory access
+		public FileLoggerConfig() : base() { } // public for Factory access
 
-		public class Factory : Factory<Factory, FileLoggerSetup>
+		public class Factory : Factory<Factory, FileLoggerConfig>
 		{
 			public Factory(LogTopic baseTopic, LogLevel baseLevel, LogTopic validTopics, LogLevel logLevel, string folderPath, string fileName)
 				: base(baseTopic, baseLevel, validTopics, logLevel, folderPath, fileName)

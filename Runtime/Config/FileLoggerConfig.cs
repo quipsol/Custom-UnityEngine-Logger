@@ -1,9 +1,9 @@
 using QS.Core.Logger;
 using System;
 
-namespace QS.Core.Setup
+namespace QS.Core.Config
 {
-	public class FileLoggerSetup<TLogTopics, TLogLevels> where TLogTopics : Enum where TLogLevels : Enum
+	public class FileLoggerConfig<TLogTopics, TLogLevels> where TLogTopics : Enum where TLogLevels : Enum
 	{
 		public TLogTopics DefaultTopic { get; internal set; }
 		public TLogLevels DefaultLevel { get; internal set; }
@@ -18,8 +18,8 @@ namespace QS.Core.Setup
 
 		public Func<FileLogMessageContext<TLogTopics, TLogLevels>, string> CustomMessageFormatter { get; internal set; }
 
-		internal FileLoggerSetup() { }
-		public class Factory<TFactory, TSetup> where TFactory : Factory<TFactory, TSetup> where TSetup : FileLoggerSetup<TLogTopics, TLogLevels>, new()
+		public FileLoggerConfig() { }
+		public class Factory<TFactory, TSetup> where TFactory : Factory<TFactory, TSetup> where TSetup : FileLoggerConfig<TLogTopics, TLogLevels>, new()
 		{
 
 			private TLogTopics _defaultTopic;
