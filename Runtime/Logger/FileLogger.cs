@@ -37,14 +37,6 @@ namespace QS.Core.Logger
 
 		private readonly Func<FileLogMessageContext<TLogTopics, TLogLevels>, string> messageFormatter;
 
-		public FileLogger(TLogTopics defaultTopic, TLogLevels defaultLevel, TLogTopics displayTopics, TLogLevels logDepth, string folderPath, string fileName,
-			Func<FileLogMessageContext<TLogTopics, TLogLevels>, string> customMessageFormatter = null) : base(defaultTopic, defaultLevel, displayTopics, logDepth)
-		{
-			this.folderPath = folderPath;
-			this.fileName = fileName;
-			messageFormatter = customMessageFormatter ?? BaseMessageFormatter;
-			backgroundTask = Task.Run(() => ProcessQueue(cts.Token));
-		}
 
 		public FileLogger(FileLoggerSetup<TLogTopics, TLogLevels> fls) : base(fls.DefaultTopic, fls.DefaultLevel, fls.DisplayTopics, fls.LogDepth)
 		{

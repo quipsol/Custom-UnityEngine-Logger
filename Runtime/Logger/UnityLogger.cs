@@ -32,32 +32,10 @@ namespace QS.Core.Logger
 		#endregion Fields & Properties
 
 
-		#region Constructors
-
-		public UnityLogger(TLogTopics defaultTopic, TLogLevels defaultLevel, TLogTopics displayTopics, TLogLevels logDepth,
-			bool useDefaultMessageColor = true, Color? defaultMessageColor = null, bool useCallStackColor = true, Color? callStackColor = null,
-			Func<UnityLogMessageContext<TLogTopics, TLogLevels>, string> customMessageFormatter = null)
-			: base(defaultTopic, defaultLevel, displayTopics, logDepth)
-		{
-			messageFormatter = customMessageFormatter ?? BaseMessageFormatter;
-			this.useDefaultMessageColor = useDefaultMessageColor;
-			this.useCallStackColor = useCallStackColor;
-
-			if (defaultMessageColor != null)
-			{
-				Color c = defaultMessageColor ?? Color.clear;
-				this.defaultMessageColor = string.Format("<color=#{0}>", ColorUtility.ToHtmlStringRGB(c));
-			}
-			if (callStackColor != null)
-			{
-				Color c = callStackColor ?? Color.clear;
-				this.callStackColor = string.Format("<color=#{0}>", ColorUtility.ToHtmlStringRGB(c));
-			}
-		}
 
 		public UnityLogger(UnityLoggerSetup<TLogTopics, TLogLevels> uls) : base(uls.DefaultTopic, uls.DefaultLevel, uls.DisplayTopics, uls.LogDepth)
 		{
-			messageFormatter = uls.CustomMessageFormatter ?? BaseMessageFormatter;
+			this.messageFormatter = uls.CustomMessageFormatter ?? BaseMessageFormatter;
 			this.useDefaultMessageColor = uls.UseDefaultMessageColor;
 			this.useCallStackColor = uls.UseCallStackColor;
 
@@ -73,7 +51,6 @@ namespace QS.Core.Logger
 			}
 		}
 
-		#endregion Constructor
 
 
 		#region BaseLogger

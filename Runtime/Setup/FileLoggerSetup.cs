@@ -76,7 +76,7 @@ namespace QS.Core.Setup
 				return (TFactory)this;
 			}
 
-			public TFactory SetmaxBatchSize(int v)
+			public TFactory SetMaxBatchSize(int v)
 			{
 				_maxBatchSize = v;
 				return (TFactory)this;
